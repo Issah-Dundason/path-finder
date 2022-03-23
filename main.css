@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    font-family: cursive;
+    color: white;
+}
+
+body {
+    background-color: #153258;
+}
+
+h3 {
+    margin: auto;
+    text-align: center;
+    width: 50%;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#canvas {
+    border: 1px solid yellow;
+}
+
+#input {
+    display: flex;
+    margin-top: 0.5rem;
+    gap: 10px;
+}
+
+#input input {
+    width : 50px;
+    height: 50px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+    color: black;
+}
+
+#start_button {
+    font-size: 19px;
+    align-self: flex-end;
+    padding: 0.7rem;
+    margin-top: 0.3rem;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 0 hsl(0deg 0% 100% / 40%);
+    background-color: hsl(206deg 97% 50%);
+}
+
+#start_button:active {
+    background: peru;
+    padding: 0.5rem;
+}
+
