@@ -45,14 +45,22 @@ function addDescription(context, nodes) {
 function drawCircle(context, node) {
     context.save();
 
-    context.fillStyle = "#03AC13";
-
+   
+    context.fillStyle = "#ffff";
     context.beginPath();
     context.ellipse(node.x + node.center,
          node.y + node.center, 
          30, 30, 0, 0, 2 * Math.PI);
-
     context.fill();
+
+
+    context.fillStyle = "#03AC13";
+    context.beginPath();
+    context.ellipse(node.x + node.center,
+         node.y + node.center, 
+         10, 10, 0, 0, 2 * Math.PI);
+    context.fill();
+
     context.restore();
 }
 
