@@ -48,10 +48,10 @@ function onStart() {
     var finish = nodes.find(n => n.name.toLowerCase() === to.value.toLowerCase());
 
     let goal = AStarSearch(start, finish);
-   path = getPath(goal);
-   clearInterval(intInterval);
+    path = getPath(goal);
+    clearInterval(intInterval);
 
-   intInterval = setInterval(draw, 1000);
+    intInterval = setInterval(draw, 1000);
 }
 
 function draw() {
