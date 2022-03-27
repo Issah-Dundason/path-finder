@@ -74,7 +74,6 @@ function AStarSearch(start, finish) {
                 n.setH(finish);
                 openList.offer(n);
 
-                console.log(openList.items);
 
             } else if(weight < n.g) {
                 n.parent = currentNode;
@@ -101,10 +100,6 @@ function getPath(goal) {
         path.unshift(end);
         end = end.parent;
     }
-
-    path.forEach(p => {
-        console.log(`(${p.x}, ${p.y})`);
-    }) 
 
     return path;
 }

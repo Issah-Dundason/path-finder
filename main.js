@@ -6,10 +6,10 @@ var context = canvas.getContext("2d");
 var startButton = document.getElementById("start_button");
 var from = document.getElementById("from");
 var to = document.getElementById("to");
+var range = document.getElementById("range");
 
 startButton.addEventListener("click", onStart);
-
-var intInterval;
+range.addEventListener('change', onRange);
 
 drawBoard(context);
 
@@ -24,7 +24,7 @@ function getNodes() {
     let c = new Node("C", 200, 0);
     let d = new Node("D", 0, 100);
     let f = new Node("F", 0, 200);
-    let g = new Node("G", 100, 200)
+    let g = new Node("G", 100, 200);
     let h = new Node("H", 200, 200);
     let e = new Node("E", 200, 100);
 
@@ -40,6 +40,8 @@ function getNodes() {
     return [a, b, c, d, e, f, g, h];
 }
 
+var shouldRun = true, delay = 1, firstDraw = true, start, currentLoc;
+
 function onStart() {
 
     let nodes = getNodes();
@@ -49,20 +51,50 @@ function onStart() {
 
     let goal = AStarSearch(start, finish);
     path = getPath(goal);
-    clearInterval(intInterval);
 
-    intInterval = setInterval(draw, 1000);
+   if(shouldRun) {
+       shouldRun = false;
+       startButton.classList.add("pressed");
+       requestAnimationFrame(animLoop);
+   }
 }
 
-function draw() {
+function onRange(e) {
+    delay = Number(e.target.value);
+}
+
+function animLoop(timeStamp) {
     clean(context);
     drawBoard(context);
     addDescription(context, getNodes());
-    update();
-}
 
-function update() {
-    if(path.length === 0) 
-        return;
-    drawCircle(context, path.shift());
+    if(!start) {
+        start = timeStamp;
+    }
+
+    var elapsedTime = Math.floor((timeStamp - start) / 1000);
+
+
+    if(path.length !== 0 && firstDraw) {
+        currentLoc = path.shift();
+        drawCircle(context, currentLoc);
+        requestAnimationFrame(animLoop)
+        firstDraw = false;
+    } else if(path.length !== 0 && elapsedTime === delay) {
+        currentLoc = path.shift();
+        drawCircle(context, currentLoc);
+        start = undefined;
+        requestAnimationFrame(animLoop)
+    } else if (path.length === 0) {
+        shouldRun = true;
+        firstDraw = true;
+        start = undefined;
+        startButton.classList.remove("pressed");
+        drawCircle(context, currentLoc,"#FF4433", "#FFFF");
+    } else {
+        if(currentLoc) {
+            drawCircle(context, currentLoc);
+        }
+        requestAnimationFrame(animLoop);
+    }
 }

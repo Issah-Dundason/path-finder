@@ -36,17 +36,17 @@ function addDescription(context, nodes) {
     nodes.forEach(node => {
         context.save();
 
-        context.font = '40px Cursive';
-        context.fillText(node.name, node.x + 30, node.y + 65);
+        context.font = '80px Monospace';
+        context.fillText(node.name, node.x + 30, node.y + 75);
         context.restore();
     });
 }
 
-function drawCircle(context, node) {
+function drawCircle(context, node, background, foreground) {
     context.save();
 
    
-    context.fillStyle = "#ffff";
+    context.fillStyle = background || "#ffff";
     context.beginPath();
     context.ellipse(node.x + node.center,
          node.y + node.center, 
@@ -54,7 +54,7 @@ function drawCircle(context, node) {
     context.fill();
 
 
-    context.fillStyle = "#03AC13";
+    context.fillStyle = foreground || "#03AC13";
     context.beginPath();
     context.ellipse(node.x + node.center,
          node.y + node.center, 

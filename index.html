@@ -12,11 +12,17 @@
         Press the <em>start</em> button to see the shortest distance to that destination</h4>
     <div id="container">
         <canvas id="canvas" width="300" height="300"></canvas>
-        <div id="input">
-            <input id="from" placeholder="from"/>
-            <input id="to" placeholder="to"/>
+        <div id="inputs">
+            <div id="input">
+                <input id="from" placeholder="from"/>
+                <input id="to" placeholder="to"/>
+            </div>
+            <div id="delay_field">
+                <label for="range">Animation delay:</label><br/>
+                <input type="range" name="range" id="range" min="1" max="5" value="1"/>
+            </div>
         </div>
-        <button id="start_button">Start</button>
+        <button id="start_button" class="start">Start</button>
     </div>
     <script src="main.js" type="module"></script>
 </body>
